@@ -14,7 +14,11 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+# passwall 官方源已迁移至 Openwrt-Passwall 组织（旧地址 xiaorouji/openwrt-passwall 已失效）
+# 按官方 README 要求，将 passwall 两个 feed 插入 feeds.conf.default 顶部
+sed -i '1i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main' feeds.conf.default
+sed -i '2i src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
 echo 'src-git adguardhome https://github.com/rufengsuixing/luci-app-adguardhome' >>feeds.conf.default
-echo 'src-git adguardhome_core https://github.com/rufengsuixing/openwrt-adguardhome' >>feeds.conf.default
+# adguardhome 核心包由 immortalwrt/packages feed 的 net/adguardhome 提供，无需单独 feed
+# （原 rufengsuixing/openwrt-adguardhome 仓库已删除）
 git clone https://github.com/sbwml/luci-app-openlist2 package/openlist
