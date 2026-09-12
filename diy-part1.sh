@@ -32,3 +32,8 @@ mv luci-app-lucky/luci-app-lucky ../luci-app-lucky
 cd ../..
 rm -rf package/kenzok8-lucky
 git clone https://github.com/sbwml/luci-app-openlist2 package/openlist
+
+# OpenAppFilter luci 前端（作者 destan19 原版，依赖官方 feed 的 kmod-oaf + appfilter 主包）
+git clone --depth 1 https://github.com/destan19/OpenAppFilter.git package/openappfilter-src
+cp -r package/openappfilter-src/luci-app-oaf package/luci-app-oaf
+rm -rf package/openappfilter-src
